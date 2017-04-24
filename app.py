@@ -5,7 +5,7 @@ import json
 import requests
 from flask import Flask, request
 
-from skyscanner import Flights
+from skyscanner.skyscanner import Flights
 flights_service = Flights('prtl6749387986743898559646983194')
 
 app = Flask(__name__)
