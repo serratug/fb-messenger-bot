@@ -50,6 +50,8 @@ def webhook():
                                                         outbounddate=words[0],
                                                         inbounddate=words[0],
                                                         adults=list2[0]).parsed
+                    send_message(sender_id, "anladim")
+
                     send_message(sender_id, words[0])
 
                     send_message(sender_id, result)
