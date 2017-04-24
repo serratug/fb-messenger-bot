@@ -8,6 +8,17 @@ from flask import Flask, request
 from skyscanner.skyscanner import Flights
 flights_service = Flights('prtl6749387986743898559646983194')
 
+result = flights_service.get_result(
+                                    country='UK',
+                                    currency='GBP',
+                                    locale='en-GB',
+                                    originplace='SIN-sky',
+                                    destinationplace='KUL-sky',
+                                    outbounddate='2017-05-28',
+                                    inbounddate='2017-05-31',
+                                    adults=1).parsed
+print(result)
+
 app = Flask(__name__)
 
 
@@ -41,20 +52,20 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-                    words = message_text.split(",")
-                    list = words[1].split()
-                    list2 = words[2].split()
-                    result = flights_service.get_result(
-                                                        originplace=list[0],
-                                                        destinationplace=list[2],
-                                                        outbounddate=words[0],
-                                                        inbounddate=words[0],
-                                                        adults=list2[0]).parsed
+                        #words = message_text.split(",")
+                        #list = words[1].split()
+                        #list2 = words[2].split()
+                        #result = flights_service.get_result(
+                        #originplace=list[0],
+                        #destinationplace=list[2],
+                        #outbounddate=words[0],
+                        #inbounddate=words[0],
+                        #adults=list2[0]).parsed
                     send_message(sender_id, "anladim")
 
-                    send_message(sender_id, words[0])
+#send_message(sender_id, words[0])
 
-                    send_message(sender_id, result)
+#send_message(sender_id, result)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
