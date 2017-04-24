@@ -45,14 +45,12 @@ def webhook():
                     list = words[1].split()
                     list2 = words[2].split()
                     result = flights_service.get_result(
-                                                        country='UK',
-                                                        currency='GBP',
-                                                        locale='en-GB',
                                                         originplace=list[0],
                                                         destinationplace=list[2],
                                                         outbounddate=words[0],
                                                         inbounddate=words[0],
                                                         adults=list2[0]).parsed
+                    send_message(sender_id, words[0])
 
                     send_message(sender_id, result)
 
