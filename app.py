@@ -54,8 +54,9 @@ def webhook():
                                                         inbounddate='2017-05-31',
                                                         adults=1).parsed
                     ucus = json.dumps(result)
+                    log(ucus)
 
-                    send_message(sender_id, ucus)
+                    send_message(sender_id, "ok")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
