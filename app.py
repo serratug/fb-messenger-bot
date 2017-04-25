@@ -2,28 +2,14 @@ import os
 import sys
 import json
 
+import xml
+
 import requests
 from flask import Flask, request
 
 from skyscanner.skyscanner import Flights
 flights_service = Flights('prtl6749387986743898559646983194')
 
-headers = {
-    "Content-Type": "application/json"
-        }
-            
-            result = flights_service.get_result(
-                                                country='UK',
-                                                currency='GBP',
-                                                locale='en-GB',
-                                                originplace='SIN-sky',
-                                                destinationplace='KUL-sky',
-                                                outbounddate='2016-07-28',
-                                                inbounddate='2016-07-31',
-                                                adults=1,
-                                                headers=headers).parsed
-            str =json.dumps(result)
-            log(str)
 
 app = Flask(__name__)
 
@@ -60,6 +46,7 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
+                
 
                     send_message(sender_id, "ok")
 
