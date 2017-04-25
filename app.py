@@ -46,18 +46,8 @@ def webhook():
                     list = words[1].split()
                     list2 = words[2].split()
                     
-                    result = flights_service.get_result(
-                                                        country='',
-                                                        currency='',
-                                                        locale='',
-                                                        originplace=list[0],
-                                                        destinationplace=list[2],
-                                                        outbounddate='',
-                                                        inbounddate=words[0],
-                                                        adults=list2[0]).parsed
-                                                        
-                    new_message = json.dumps(result)
-                    send_message(sender_id, new_message)
+
+                    send_message(sender_id, words[1])
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
