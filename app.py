@@ -41,8 +41,23 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-
-                    send_message(sender_id, "okay")
+                    
+                    words = message_text.split(",")
+                    list = words[1].split()
+                    list2 = words[2].split()
+                    
+                    result = flights_service.get_result(
+                                                        country='',
+                                                        currency='',
+                                                        locale='',
+                                                        originplace=list[0],
+                                                        destinationplace=list[2],
+                                                        outbounddate='',
+                                                        inbounddate=words[0],
+                                                        adults=list2[0]).parsed
+                                                        
+                    new_message = json.dumps(result)
+                    send_message(sender_id, new_message)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
