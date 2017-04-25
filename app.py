@@ -44,17 +44,6 @@ def webhook():
                     
                     words = message_text.split(",")
                     
-                    result = flights_service.get_result(
-                                                        country='UK',
-                                                        currency='GBP',
-                                                        locale='en-GB',
-                                                        originplace='SIN-sky',
-                                                        destinationplace='KUL-sky',
-                                                        outbounddate='2017-05-28',
-                                                        inbounddate='2017-05-31',
-                                                        adults=1).parsed
-                    ucus = json.dumps(result)
-                    log(ucus)
 
                     send_message(sender_id, "ok")
 
