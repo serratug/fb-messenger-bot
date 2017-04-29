@@ -7,11 +7,17 @@ import xml
 import requests
 from flask import Flask, request
 
-from skyscanner.skyscanner import Flights
-flights_service = Flights('prtl6749387986743898559646983194')
+from urllib2 import Request, urlopen, URLError
+import urllib2
 
 
 app = Flask(__name__)
+
+response = urllib2.urlopen("http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/TR/eur/tr-TR/uk/us/2017-10-25/2017-10-27?apikey=prtl6749387986743898559646983194")
+
+
+data = json.load(response)
+print data ["Quotes"]
 
 
 @app.route('/', methods=['GET'])
@@ -63,6 +69,7 @@ def webhook():
 
 
 def send_message(recipient_id, message_text):
+    
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
