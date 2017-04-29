@@ -51,11 +51,11 @@ def webhook():
                     response = urllib2.urlopen("http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/TR/eur/tr-TR/uk/us/2017-10-25/2017-10-27?apikey=prtl6749387986743898559646983194")
 
 
-                    data = json.load(response)
-                    print data ["Quotes"]
+                    data2 = json.load(response)
+                    log(data2 ["Quotes"])
                 
 
-                    send_message(sender_id, data ["Quotes"])
+                    send_message(sender_id, "ok")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
