@@ -13,11 +13,6 @@ import urllib2
 
 app = Flask(__name__)
 
-response = urllib2.urlopen("http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/TR/eur/tr-TR/uk/us/2017-10-25/2017-10-27?apikey=prtl6749387986743898559646983194")
-
-
-data = json.load(response)
-print data ["Quotes"]
 
 
 @app.route('/', methods=['GET'])
@@ -52,9 +47,15 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
+                    
+                    response = urllib2.urlopen("http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/TR/eur/tr-TR/uk/us/2017-10-25/2017-10-27?apikey=prtl6749387986743898559646983194")
+
+
+                    data = json.load(response)
+                    print data ["Quotes"]
                 
 
-                    send_message(sender_id, "ok")
+                    send_message(sender_id, data ["Quotes"])
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
