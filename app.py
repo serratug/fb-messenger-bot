@@ -46,12 +46,14 @@ def webhook():
                     outbounddate = words[0]
                     originplace = str[0]
                     destinationplace = str[2]
-                    log(outbounddate)
-                    log(originplace)
-                    log(destinationplace)
+                    
+                    send_message(sender_id, outbounddate)
+                    send_message(sender_id, originplace)
+                    send_message(sender_id, destinationplace)
                     
 
                     send_message(sender_id, "bisey")
+                
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
