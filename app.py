@@ -2,13 +2,8 @@ import os
 import sys
 import json
 
-import xml
-
 import requests
 from flask import Flask, request
-
-from urllib2 import Request, urlopen, URLError
-import urllib2
 
 
 app = Flask(__name__)
@@ -47,13 +42,14 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
+                    str = words[1].split("")
+                    outbounddate = words[0]
+                    originplace = str[0]
+                    destinationplace = str[2]
+                    log(outbounddate)
+                    log(originplace)
+                    log(destinationplace)
                     
-                    response = urllib2.urlopen("http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/TR/eur/tr-TR/uk/us/2017-10-25/2017-10-27?apikey=prtl6749387986743898559646983194")
-
-
-                    data2 = json.load(response)
-                    log(data2 ["Quotes"])
-                
 
                     send_message(sender_id, "ok")
 
