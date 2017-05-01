@@ -45,8 +45,9 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
-                    r = getresult(words)
-                    log(r)
+                    log("here")
+                    #r = getresult(words)
+                    #log(r)
                     
                     #flights = r["Routes"]["Price"]
                     
