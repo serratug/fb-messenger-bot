@@ -59,7 +59,7 @@ def webhook():
                     log(url)
                     f = requests.get(url)
                     json_data = json.loads(f.text)
-                    log(json_data)
+                    log(json_data["Quotes"])
                     #flights = f.json()
                     #log(flights)
                     #log(flights["Quotes"])
