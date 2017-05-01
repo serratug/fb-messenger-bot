@@ -53,7 +53,7 @@ def webhook():
                         origin = "IST"
                         destination = "ESB"
 
-                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/anywhere/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
+                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
                     
                     #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     log(url)
@@ -63,14 +63,15 @@ def webhook():
                     #log(flights)
                     #log(flights["Quotes"])
                     #parsed_value = json_data["Quotes"][0]["MinPrice"]
+                    str = "Available flights with prices: "
                     for item in json_data["Quotes"]:
-                        log(item["MinPrice"])
-                    #log(parsed_value)
+                        str = str + item["MinPrice"] + ", "
+                    log(str)
                     
                     #send_message(sender_id, flights)
                     
 
-                    send_message(sender_id, json_data["Quotes"][0]["MinPrice"])
+                    send_message(sender_id, str)
                 
 
                 if messaging_event.get("delivery"):  # delivery confirmation
