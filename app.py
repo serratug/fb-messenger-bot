@@ -8,7 +8,6 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-flag=0
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -30,7 +29,7 @@ def webhook():
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
  
-    if data["object"] == "page" && flag == 0:
+    if data["object"] == "page":
 
         for entry in data["entry"]:
             
@@ -59,23 +58,18 @@ def webhook():
                     log(url)
                     f = requests.get(url)
                     json_data = json.loads(f.text)
-                    if flag == 0:
-                        log(json_data["Quotes"])
-                    #flights = f.json()
-                    #log(flights)
-                    #log(flights["Quotes"])
-                    #parsed_value = json_data["Quotes"][0]["MinPrice"]
-                        str1 = "Available flights with prices: "
-                        for item in json_data["Quotes"]:
-                            str1 = str1 + str(item["MinPrice"]) + ", "
-                        log(str1)
 
-                    #send_message(sender_id, flights)
-                    
+#log(json_data["Quotes"])
 
-                        send_message(sender_id, str1)
-                    else:
-                        send_message(sender_id, "ok")
+#str1 = "Available flights with prices: "
+#for item in json_data["Quotes"]:
+#str1 = str1 + str(item["MinPrice"]) + ", "
+#log(str1)
+
+
+
+#send_message(sender_id, str1)
+                    send_message(sender_id, "ok")
 
                 
 
