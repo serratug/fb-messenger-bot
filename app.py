@@ -65,8 +65,10 @@ def webhook():
                         json_data = json.loads(f.text)
 
                         str1 = "Available flights from " + origin + " to " + destination + " with prices: "
-                        for item in json_data["Quotes"]:
-                            str1 = str1 + str(item["MinPrice"]) + ", "
+                        for index, item in json_data["Quotes"]:
+                            list[index] = float(item["MinPrice"])
+                        #str1 = str1 + str(item["MinPrice"]) + ", "
+                        str1 = str1 + str(sorted(list))
                         log(str1)
                         send_message(sender_id, str1)
                     
