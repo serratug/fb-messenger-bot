@@ -8,7 +8,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-
+flag=0
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -29,8 +29,8 @@ def webhook():
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
-
-    if data["object"] == "page":
+ 
+    if data["object"] == "page" && flag == 0:
 
         for entry in data["entry"]:
             
@@ -48,6 +48,7 @@ def webhook():
                         outbounddate = words[0]
                         origin = words[1]
                         destination = words[2]
+                        flag = 1
                     else:
                         outbounddate = "2017-07-07"
                         origin = "IST"
