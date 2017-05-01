@@ -63,7 +63,7 @@ def webhook():
 
 #str1 = "Available flights from " + origin + " to " + destination + " with prices: "
                     str1 = "Available flights with prices: "
-                    if flag=0:
+                    if flag==0:
                         for item in json_data["Quotes"]:
                             str1 = str1 + str(item["MinPrice"]) + ", "
 
