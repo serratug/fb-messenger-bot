@@ -72,7 +72,6 @@ def webhook():
                     
 
 
-#send_message(sender_id, "ok")
 
                 
 
