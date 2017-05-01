@@ -46,10 +46,11 @@ def webhook():
                     
                     words = message_text.split(",")
                     r = getresult(words)
+                    log(r)
                     
-                    flights = r["Routes"]["Price"]
+                    #flights = r["Routes"]["Price"]
                     
-                    send_message(sender_id, flights)
+                    #send_message(sender_id, flights)
                     
 
                     send_message(sender_id, "bisey")
