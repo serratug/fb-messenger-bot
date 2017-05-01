@@ -60,7 +60,8 @@ def webhook():
                     f = requests.get(url)
                     json_data = json.loads(f.text)
 
-                    str1 = "Available flights from " + origin + " to " + destination + " with prices: "
+#str1 = "Available flights from " + origin + " to " + destination + " with prices: "
+                    str1 = "Available flights with prices: "
                     for item in json_data["Quotes"]:
                         str1 = str1 + str(item["MinPrice"]) + ", "
                     log(str1)
