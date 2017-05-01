@@ -48,7 +48,6 @@ def webhook():
                         outbounddate = words[0]
                         origin = words[1]
                         destination = words[2]
-                        flag = 1
                     else:
                         outbounddate = "2017-07-07"
                         origin = "IST"
@@ -60,20 +59,24 @@ def webhook():
                     log(url)
                     f = requests.get(url)
                     json_data = json.loads(f.text)
-                    log(json_data["Quotes"])
+                    if flag == 0:
+                        log(json_data["Quotes"])
                     #flights = f.json()
                     #log(flights)
                     #log(flights["Quotes"])
                     #parsed_value = json_data["Quotes"][0]["MinPrice"]
-                    str1 = "Available flights with prices: "
-                    for item in json_data["Quotes"]:
-                        str1 = str1 + str(item["MinPrice"]) + ", "
-                    log(str1)
+                        str1 = "Available flights with prices: "
+                        for item in json_data["Quotes"]:
+                            str1 = str1 + str(item["MinPrice"]) + ", "
+                        log(str1)
 
                     #send_message(sender_id, flights)
                     
 
-                    send_message(sender_id, str1)
+                        send_message(sender_id, str1)
+                    else:
+                        send_message(sender_id, "ok")
+
                 
 
                 if messaging_event.get("delivery"):  # delivery confirmation
