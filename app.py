@@ -54,8 +54,9 @@ def webhook():
                     log(url)
                     f = requests.get(url)
                     
-                    #flights = f.text["Routes"]
-                    log(f.json())
+                    flights = f.json()
+                    log(flights)
+                    log(flights["Quotes"])
                     
                     #send_message(sender_id, flights)
                     
