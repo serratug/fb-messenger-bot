@@ -45,11 +45,12 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
-                    log("here")
-                    r = getresult(words)
-                    log(r)
+                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/anywhere/usd/tr-TR/%s/%s/%s/anytime?apikey=prtl6749387986743898559646983194" % (words[1], words[2], words[0])
                     
-                    #flights = r["Routes"]["Price"]
+                    f = requests.get(url)
+                    
+                    flights = f["Routes"]["Price"]
+                    log(flights)
                     
                     #send_message(sender_id, flights)
                     
