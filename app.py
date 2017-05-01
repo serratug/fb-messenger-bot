@@ -53,10 +53,11 @@ def webhook():
                     #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     log(url)
                     f = requests.get(url)
-                    
-                    flights = f.json()
-                    log(flights)
-                    log(flights["Quotes"]["MinPrice"])
+                    json_data = json.loads(f.text)
+                    #flights = f.json()
+                    #log(flights)
+                    #log(flights["Quotes"])
+                    log(json_data)
                     
                     #send_message(sender_id, flights)
                     
