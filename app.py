@@ -38,10 +38,12 @@ def webhook():
                 if messaging_event.get("message"):  # someone sent us a message
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    if sender_id == 289947534762781:
-                        sys.exit(1)
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
+                    echo = messaging_event["message"]["is_echo"]
+                    
+                    if echo=="True":
+                        sys.exit(1)
                     
                     log("message = " + message_text)
                     words = message_text.split(",")
@@ -55,9 +57,9 @@ def webhook():
                         origin = "IST"
                         destination = "ESB"
 
-                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
+#url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
                     
-                    #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
+                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     log("print url = " + url)
                     
                     f = requests.get(url)
