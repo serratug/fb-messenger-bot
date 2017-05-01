@@ -42,14 +42,13 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
-                    #str = words[1].split(" ")
                     outbounddate = words[0]
-                    #originplace = str[0]
-                    #destinationplace = str[2]
+                    originplace = words[1]
+                    destinationplace = words[2]
                     
                     send_message(sender_id, outbounddate)
-                    #send_message(sender_id, originplace)
-                    #send_message(sender_id, destinationplace)
+                    send_message(sender_id, originplace)
+                    send_message(sender_id, destinationplace)
                     
 
                     send_message(sender_id, "bisey")
