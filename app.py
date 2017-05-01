@@ -46,6 +46,7 @@ def webhook():
                     
                     words = message_text.split(",")
                     url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (words[1], words[2], words[0])
+                    log(url)
                     #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/FR/eur/en-US/uk/us/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     
                     f = requests.get(url)
