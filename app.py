@@ -57,6 +57,7 @@ def webhook():
                     #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     log("print url = " + url)
                     try:
+                        log("try")
                         f = requests.get(url)
                         json_data = json.loads(f.text)
                         log(json_data["Quotes"])
@@ -68,6 +69,7 @@ def webhook():
 
                     except requests.exceptions.RequestException as e:  # This is the correct syntax
                         print e
+                        log("exception")
                         sys.exit(1)
 
                         send_message(sender_id, "ok")
