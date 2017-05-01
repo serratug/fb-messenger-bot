@@ -8,6 +8,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+flag = 0
 
 
 @app.route('/', methods=['GET'])
@@ -62,8 +63,10 @@ def webhook():
 
 #str1 = "Available flights from " + origin + " to " + destination + " with prices: "
                     str1 = "Available flights with prices: "
-                    for item in json_data["Quotes"]:
-                        str1 = str1 + str(item["MinPrice"]) + ", "
+                    if flag=0:
+                        for item in json_data["Quotes"]:
+                            str1 = str1 + str(item["MinPrice"]) + ", "
+
                     log(str1)
 
                     send_message(sender_id, str1)
@@ -100,6 +103,7 @@ def send_message(recipient_id, message_text):
             "text": message_text
         }
     })
+    flag=1
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
