@@ -52,27 +52,21 @@ def webhook():
                         origin = "IST"
                         destination = "ESB"
 
-#url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
+                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
                     
-                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
+                    #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
                     log("print url = " + url)
-                    try:
-                        log("try")
-                        f = requests.get(url)
-                        json_data = json.loads(f.text)
-                        log(json_data["Quotes"])
-                        str1 = "Available flights with prices: "
-                        for item in json_data["Quotes"]:
-                            str1 = str1 + str(item["MinPrice"]) + ", "
-                        log(str1)
-                        send_message(sender_id, str1)
+                    
+                    f = requests.get(url)
+                    json_data = json.loads(f.text)
+                    log(json_data["Quotes"])
+                    str1 = "Available flights with prices: "
+                    for item in json_data["Quotes"]:
+                        str1 = str1 + str(item["MinPrice"]) + ", "
+                    log(str1)
+                    send_message(sender_id, str1)
 
-                    except requests.exceptions.RequestException as e:  # This is the correct syntax
-                        print e
-                        log("exception")
-                        sys.exit(1)
-
-                        send_message(sender_id, "ok")
+#send_message(sender_id, "ok")
 
                 
 
