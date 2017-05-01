@@ -44,9 +44,15 @@ def webhook():
                     
                     words = message_text.split(",")
                     log(words)
-                    outbounddate = "2017-07-07"
-                    origin = "IST"
-                    destination = "ESB"
+                    if len(words)>=3:
+                        outbounddate = words[0]
+                        origin = words[1]
+                        destination = words[2]
+                    else:
+                        outbounddate = "2017-07-07"
+                        origin = "IST"
+                        destination = "ESB"
+
                     url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
                     
                     #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-10-25/2017-11-11?apikey=prtl6749387986743898559646983194"
