@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-from sth import getresult
+#from sth import getresult
 
 import requests
 from flask import Flask, request
