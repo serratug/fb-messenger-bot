@@ -64,7 +64,7 @@ def webhook():
                     #log(flights)
                     #log(flights["Quotes"])
                     #parsed_value = json_data["Quotes"][0]["MinPrice"]
-#str1 = "Available flights with prices: "
+                    str1 = "Available flights with prices: "
 #for item in json_data["Quotes"]:
 #str1 = str1 + str(item["MinPrice"]) + ", "
 #log(str1)
