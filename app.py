@@ -2,8 +2,6 @@ import os
 import sys
 import json
 
-#from sth import getresult
-
 import requests
 from flask import Flask, request
 
@@ -45,6 +43,7 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
+                    log(words)
                     outbounddate = "2017-07-07"
                     origin = "IST"
                     destination = "ESB"
