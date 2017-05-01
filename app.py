@@ -46,8 +46,8 @@ def webhook():
                     
                     words = message_text.split(",")
                     log("here")
-                    #r = getresult(words)
-                    #log(r)
+                    r = getresult(words)
+                    log(r)
                     
                     #flights = r["Routes"]["Price"]
                     
