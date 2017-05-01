@@ -2,6 +2,8 @@ import os
 import sys
 import json
 
+from sth import getresult
+
 import requests
 from flask import Flask, request
 
@@ -33,6 +35,7 @@ def webhook():
     if data["object"] == "page":
 
         for entry in data["entry"]:
+            
             for messaging_event in entry["messaging"]:
 
                 if messaging_event.get("message"):  # someone sent us a message
@@ -42,13 +45,11 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     words = message_text.split(",")
-                    outbounddate = words[0]
-                    originplace = words[1]
-                    destinationplace = words[2]
+                    r = getresult(words)
                     
-                    send_message(sender_id, outbounddate)
-                    send_message(sender_id, originplace)
-                    send_message(sender_id, destinationplace)
+                    flights = r["Routes"]["Price"]
+                    
+                    send_message(sender_id, flights)
                     
 
                     send_message(sender_id, "bisey")
