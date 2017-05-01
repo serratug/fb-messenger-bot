@@ -59,17 +59,17 @@ def webhook():
                     f = requests.get(url)
                     json_data = json.loads(f.text)
 
-#log(json_data["Quotes"])
+                    log(json_data["Quotes"])
 
-#str1 = "Available flights with prices: "
-#for item in json_data["Quotes"]:
-#str1 = str1 + str(item["MinPrice"]) + ", "
-#log(str1)
+                    str1 = "Available flights with prices: "
+                    for item in json_data["Quotes"]:
+                    str1 = str1 + str(item["MinPrice"]) + ", "
+                    log(str1)
 
 
 
-#send_message(sender_id, str1)
-                    send_message(sender_id, "ok")
+                    send_message(sender_id, str1)
+                        #send_message(sender_id, "ok")
 
                 
 
