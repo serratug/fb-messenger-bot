@@ -65,7 +65,7 @@ def webhook():
                     #send_message(sender_id, flights)
                     
 
-                    send_message(sender_id, parsed_value)
+                    send_message(sender_id, "ok")
                 
 
                 if messaging_event.get("delivery"):  # delivery confirmation
