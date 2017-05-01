@@ -42,33 +42,35 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     if len(message_text)>20:
-                        sys.exit(1)
-                    
-                    log("message = " + message_text)
-                    words = message_text.split(",")
-                    log(words)
-                    if len(words)>=3:
-                        outbounddate = words[0]
-                        origin = words[1]
-                        destination = words[2]
+                        pass
                     else:
-                        outbounddate = "2017-07-07"
-                        origin = "IST"
-                        destination = "ESB"
+                        log("message = " + message_text)
+                        words = message_text.split(",")
+                        log(words)
+                        if len(words)>=3:
+                            outbounddate = words[0]
+                            origin = words[1]
+                            destination = words[2]
+                        else:
+                            outbounddate = "2017-07-07"
+                            origin = "IST"
+                            destination = "ESB"
+                    
+                        url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
+                    
+                        #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-08-25/2017-09-11?apikey=prtl6749387986743898559646983194"
+                        log("print url = " + url)
+                    
+                        f = requests.get(url)
+                            json_data = json.loads(f.text)
+                            log(json_data["Quotes"])
+                        str1 = "Available flights with prices: "
+                        for item in json_data["Quotes"]:
+                            str1 = str1 + str(item["MinPrice"]) + ", "
+                        log(str1)
+                        send_message(sender_id, str1)
+                    
 
-                    url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (origin, destination, outbounddate)
-                    
-                    #url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/IST/ESB/2017-08-25/2017-09-11?apikey=prtl6749387986743898559646983194"
-                    log("print url = " + url)
-                    
-                    f = requests.get(url)
-                    json_data = json.loads(f.text)
-                    log(json_data["Quotes"])
-                    str1 = "Available flights with prices: "
-                    for item in json_data["Quotes"]:
-                        str1 = str1 + str(item["MinPrice"]) + ", "
-                    log(str1)
-                    send_message(sender_id, str1)
 
 #send_message(sender_id, "ok")
 
