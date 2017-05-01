@@ -44,6 +44,7 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
+                    words = [4]
                     words = message_text.split(",")
                     url ="http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/TR/usd/tr-TR/%s/%s/%s/?apikey=prtl6749387986743898559646983194" % (words[1], words[2], words[0])
                     
